@@ -3,12 +3,13 @@ import java.util.ArrayList;
 public class Player extends Character{
     private int expPoints=0;
     private Item equippedItem;
-
+    private int healTokens;
 
 
     public Player(String name, int hp, int damage, int armour, int expPoints, ArmourType armourType) {
         super(name, hp, damage, armour, armourType);
         this.expPoints = expPoints;
+        this.healTokens = 0;
     }
 
 
@@ -44,5 +45,13 @@ public class Player extends Character{
 
     public void setExpPoints(int expPoints) {
         this.expPoints = expPoints;
+    }
+
+    public int getHealTokens() {
+        return healTokens;
+    }
+
+    public void setHealTokens(int healTokens) {
+        this.healTokens = healTokens;
     }
 }

@@ -4,18 +4,23 @@ public class Dungeon {
     private int reward;
     private ArrayList<Enemy> enemies;
     private String name;
-//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
-    public Dungeon(String name, int reward) {
-        this.name = name;
+
+
+    public Dungeon(String name, int reward){
         this.reward = reward;
+        this.name = name;
         enemies = new ArrayList<>();
     }
 
-    boolean isCompleted(){
+    public String getName() {
+        return name;
+    }
+
+    public boolean isCompleted(){
         return enemies.size() == 0;
     }
 
-    Enemy popEnemy(){
+    public Enemy popEnemy(){
         Enemy toPop = enemies.get(0);
         enemies.remove(0);
         return toPop;
@@ -25,10 +30,7 @@ public class Dungeon {
         enemies.add(monster);
     }
 
-    public int getReward(){
+    public int getReward() {
         return reward;
-    }
-    public String getName(){
-        return name;
     }
 }
