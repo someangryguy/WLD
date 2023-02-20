@@ -3,6 +3,7 @@ public class Enemy extends Character{
     public Enemy(String name, int hp, int damage, int armour,int expReward, ArmourType armourType) {
         super(name, hp, damage, armour, armourType);
         this.expReward = expReward;
+        //asdfsdf
     }
 
 

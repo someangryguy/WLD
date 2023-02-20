@@ -1,5 +1,6 @@
 import java.io.File;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
@@ -40,15 +41,8 @@ public class main {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println("Run the game.");
-
-        /*
-        * Player player = loadInfo();
-        GetWeapon(player);
-        * */
-        Player player = new Player("741", 500, 20,5,0, ArmourType.ARMORED);
-        player.equipItem(new Item("Sword", 20, 0, DamageType.SLASH));
+    private static ArrayList<Level> initLevels(Player player){
+        ArrayList<Level> levels = new ArrayList<>();
 
         Dungeon forest = new Dungeon("Forest", 1000);
 
@@ -64,11 +58,39 @@ public class main {
                 "Unsafe set", 55, 40, 12, 200, ArmourType.ARMORED
         ));
 
-        Level first = new Level("Land of forests and stuff", forest, player, null);
 
-        while(!first.isFinished() && player.isAlive()){
-            first.levelHub();
+        Level first = new Level("Land of forests and stuff", forest, player, null);
+        Level second = new Level("Land of forests and stuff and guys", null, player, null);
+        first.setNext(second);
+        levels.add(first);
+        levels.add(second);
+
+        return levels;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Run the game.");
+
+        /*
+        * Player player = loadInfo();
+        GetWeapon(player);
+        * */
+        Player player = new Player("741", 500, 20,5,0, ArmourType.ARMORED);
+        player.equipItem(new Item("Sword", 20, 0, DamageType.SLASH));
+
+
+
+        ArrayList<Level> levels = initLevels(player);
+
+        for (Level thisLevel : levels) {
+            while(!thisLevel.isFinished()){
+                thisLevel.levelHub();
+            }
+            if(!player.isAlive()){
+                break;
+            }
         }
+        // TODO: 06.02.2023 přidat další level
 
 
         System.out.println("------------------------------------Game over!------------------------------------");
